@@ -13,4 +13,8 @@ Pkg
 4. Save the Settings.ini file with these updates
 
 ## How to Build
-1. In package.json, set the pkg > targets array to the 
+1. In package.json, set the pkg > targets array to the desired build targets. Information on targets can be found at [https://github.com/vercel/pkg#targets](https://github.com/vercel/pkg#targets)
+2. In a terminal, run the command:
+```
+pkg .
+```
