@@ -1,0 +1,21 @@
+{
+  "name": "SteamEasyDownload",
+  "version": "0.1.0",
+  "description": "Easily download Steam Apps",
+  "main": "app.js",
+  "bin": "app.js",
+  "author": "Christian Carman",
+  "license": "MIT",
+  "dependencies": {
+    "ini": "^3.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "pkg": {
+      "assets": [],
+      "targets": ["latest-win-x64"],
+      "outputPath": "dist"
+  }
+}

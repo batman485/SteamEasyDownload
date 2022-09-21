@@ -1,0 +1,14 @@
+# Settings File for Steam Downloader
+
+[Steam]
+# Path to the steamapps folder
+exepath=C:\Program Files (x86)\Steam
+apppath=C:\Program Files (x86)\Steam\steamapps
+#Steam user credentials (must own games to download)
+user=SteamUser
+pass=Steam*Password!
+
+[Downloads]
+# Comma seperated list of steam App Ids to download
+# App Ids can be found at https://steamdb.info/
+appids=370600
