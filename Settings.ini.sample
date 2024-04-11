@@ -11,4 +11,10 @@ pass=Steam*Password!
 [Downloads]
 # Comma seperated list of steam App Ids to download
 # App Ids can be found at https://steamdb.info/
-appids=370600
+appids=
+
+[Options]
+# Subscribe to apps in case they are not in account
+# Set to true if you are receiving the error No subscription
+# Will only work for free games / dedicated servers
+subscribe=false

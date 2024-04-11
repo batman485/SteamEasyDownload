@@ -49,18 +49,18 @@ if(hasErrors) {
         //Symlink Directory
         await symlinkAppDir();
     
-        //Download Apps
+        //Download Apps from App ID
         const apps = settings.Downloads.appids.split(",");
-    
-        let count = 1;
         const appCount = apps.length;
-        for await (const app of apps) {
-            console.log(`Downloading ${app} (${count} of ${appCount})`);
-            
-            await downloadApp(app);
-            await updateAppManifestLauncherPath(app);
 
-            count++;
+        console.log(`Downloading ${appCount} ${(appCount > 1 ? 'Apps' : 'App')}`);
+        await downloadApps(apps);
+        
+        //Update App Manifest Launcher Path
+        console.log(`Updating App Manifests`);
+
+        for await (const app of apps) {
+            await updateAppManifestLauncherPath(app);
         };
     
         await fs.unlinkSync(path.join(steamAppPath, 'libraryfolders.vdf'));
@@ -68,12 +68,18 @@ if(hasErrors) {
     })();
 }
 
-async function downloadApp(appId) {
-    let login = settings.Steam.user.length > 0 ? `+login "${settings.Steam.user}" ` : '';
-    login += settings.Steam.pass.length > 0 && login != '' ? `"${settings.Steam.pass}" ` : '';
+async function downloadApps(appIds) {
+    //Create Login Command Part
+    let login = settings.Steam.user.length > 0 ? `+login "${settings.Steam.user}"` : '';
+    login += settings.Steam.pass.length > 0 && login != '' ? ` "${settings.Steam.pass}"` : '';
 
-    const cmd = `START "" ${steamCmdExe} ${login}+app_update ${appId} validate +quit`;
+    //Create App Command Parts
+    const appUpdate = `+app_update ${appIds.join(' +app_update ')}`;
+    const appSubscribe = settings.Options.subscribe == 'true' ? `+app_license_request ${appIds.join(' +app_license_request ')} ` : '';
 
+    //Create Command from Parts
+    const cmd = `START "" ${steamCmdExe} ${login} ${appSubscribe}${appUpdate} +quit`;
+    
     const { stdout, stderr } = await exec(cmd);
     if(stderr) console.error('stderr:', stderr);
 }

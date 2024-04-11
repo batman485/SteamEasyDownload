@@ -1,6 +1,6 @@
 {
   "name": "SteamEasyDownload",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Easily download Steam Apps",
   "main": "app.js",
   "bin": "app.js",
@@ -14,8 +14,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "pkg": {
-      "assets": [],
-      "targets": ["latest-win-x64"],
-      "outputPath": "dist"
+    "assets": [],
+    "targets": [
+      "latest-win-x64"
+    ],
+    "outputPath": "dist"
   }
 }
