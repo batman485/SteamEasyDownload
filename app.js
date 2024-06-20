@@ -10,7 +10,7 @@ const root = process.cwd();
 const settings = ini.parse(fs.readFileSync("Settings.ini", 'utf-8'));
 
 const steamExe = path.join(settings.Steam.exepath, 'steam.exe');
-const steamCmdPath = path.join(root, 'lib', 'steamcmd');
+const steamCmdPath = path.join('lib', 'steamcmd');
 const steamCmdExe = path.join(steamCmdPath, 'steamcmd.exe');
 const steamAppPath = path.join(steamCmdPath, 'steamapps');
 
@@ -75,7 +75,7 @@ async function downloadApps(appIds) {
 
     //Create App Command Parts
     const appUpdate = `+app_update ${appIds.join(' +app_update ')}`;
-    const appSubscribe = settings.Options.subscribe == 'true' ? `+app_license_request ${appIds.join(' +app_license_request ')} ` : '';
+    const appSubscribe = settings.Options.subscribe == true ? `+app_license_request ${appIds.join(' +app_license_request ')} ` : '';
 
     //Create Command from Parts
     const cmd = `START "" ${steamCmdExe} ${login} ${appSubscribe}${appUpdate} +quit`;
@@ -88,7 +88,7 @@ async function symlinkAppDir() {
     if(fs.existsSync(steamAppPath))
         await removeAppDirSymlink()
 
-    const cmd = `mklink /D ${steamAppPath} ${settings.Steam.apppath}`;
+    const cmd = `mklink /D "${steamAppPath}" "${settings.Steam.apppath}"`;
 
     const { stdout, stderr } = await exec(cmd);
     if(stderr) {

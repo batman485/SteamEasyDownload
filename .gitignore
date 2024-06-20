@@ -8,6 +8,7 @@ lerna-debug.log*
 
 # Locks
 *.lock
+package-lock.json
 
 # Dependency directories
 node_modules/

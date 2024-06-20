@@ -1,6 +1,6 @@
 {
   "name": "SteamEasyDownload",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Easily download Steam Apps",
   "main": "app.js",
   "bin": "app.js",
